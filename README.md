@@ -1,7 +1,3 @@
-Claro, aquí te dejo la documentación actualizada con la información sobre cómo modificar el tiempo de ejecución del monitoreo:
-
----
-
 # Documentación del Algoritmo de Monitoreo de Recursos del Sistema
 
 ## Descripción
@@ -125,7 +121,3 @@ Al final de la ejecución, el script generará un archivo Excel llamado `monitor
 ## Conclusión
 
 Este script proporciona una solución simple y eficiente para monitorear el uso de los recursos del sistema (CPU, memoria, disco y red) y almacenar esos datos en un archivo Excel para su posterior análisis o uso. Puedes ajustar fácilmente la duración del monitoreo y el intervalo de recolección de métricas para adaptarlo a tus necesidades específicas.
-
---- 
-
-Con esta actualización, ahora los usuarios saben cómo ajustar tanto el tiempo total de monitoreo como el intervalo de recolección de datos según sus necesidades.
