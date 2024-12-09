@@ -97,7 +97,47 @@ pip install numpy
 
 ---
 
-## 8. **Opcional: Instalar un Entorno de Desarrollo**
+## 8. **Ejecutar un Script de Python**
+
+Una vez que hayas instalado Python y verificado que está funcionando correctamente, puedes ejecutar tus scripts de Python de la siguiente manera:
+
+### Pasos para Ejecutar un Script:
+1. **Crear un script de Python**:
+   - Abre un editor de texto (puede ser el **Bloc de notas**, **VS Code**, **PyCharm**, o cualquier editor de tu preferencia).
+   - Escribe el código de Python y guárdalo con la extensión `.py`. Por ejemplo:
+     ```python
+     # archivo: ejemplo.py
+     print("¡Hola, mundo!")
+     ```
+
+2. **Ejecutar el script desde la línea de comandos**:
+   - Abre **Command Prompt** (tecla Windows + `R`, escribe `cmd` y presiona Enter).
+   - Navega hasta el directorio donde guardaste el archivo `.py` usando el comando `cd`. Por ejemplo, si el archivo está en `C:\MisScripts`:
+     ```cmd
+     cd C:\MisScripts
+     ```
+   - Ejecuta el script escribiendo:
+     ```cmd
+     python ejemplo.py
+     ```
+     Esto debería mostrar:
+     ```
+     ¡Hola, mundo!
+     ```
+
+3. **Ejecutar un script desde cualquier ubicación**:
+   - Si has agregado Python al `PATH` correctamente (como se mencionó en los pasos anteriores), puedes ejecutar el script desde cualquier carpeta en la que te encuentres, solo proporcionando la ruta completa al archivo:
+     ```cmd
+     python C:\MisScripts\ejemplo.py
+     ```
+
+### Problemas comunes:
+- **Error "python no es reconocido"**: Si recibes este error, significa que Python no está en tu `PATH`. Asegúrate de haber marcado la opción **"Add Python 3.x to PATH"** durante la instalación o agrega manualmente las rutas correspondientes en las variables de entorno.
+- **Error "No such file or directory"**: Si el script no se encuentra, asegúrate de haber navegado correctamente al directorio donde está guardado el archivo `.py`.
+
+---
+
+## 9. **Opcional: Instalar un Entorno de Desarrollo**
 Para facilitar el desarrollo en Python, puedes instalar un IDE (Entorno de Desarrollo Integrado) como:
 - **VS Code**: [https://code.visualstudio.com/](https://code.visualstudio.com/)
 - **PyCharm**: [https://www.jetbrains.com/pycharm/](https://www.jetbrains.com/pycharm/)
@@ -105,4 +145,6 @@ Para facilitar el desarrollo en Python, puedes instalar un IDE (Entorno de Desar
 
 ---
 
-¡Listo! Ahora tienes Python 3 instalado y configurado en tu máquina con Windows. 🎉
+¡Listo! Ahora tienes Python 3 instalado y configurado en tu máquina con Windows, y sabes cómo ejecutar un script de Python. 🎉
+
+--- 
