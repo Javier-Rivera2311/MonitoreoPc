@@ -1,7 +1,11 @@
+Claro, aquí te dejo la documentación actualizada con la información sobre cómo modificar el tiempo de ejecución del monitoreo:
+
+---
+
 # Documentación del Algoritmo de Monitoreo de Recursos del Sistema
 
 ## Descripción
-Este script en Python monitorea el uso de los recursos del sistema (CPU, memoria, disco y red) durante un período de 2 minutos, recopilando métricas cada 10 segundos. Los datos recopilados se almacenan en un archivo de Excel (`monitoreo.xlsx`). El script utiliza la librería `psutil` para obtener las métricas del sistema y `openpyxl` para generar y escribir en el archivo Excel.
+Este script en Python monitorea el uso de los recursos del sistema (CPU, memoria, disco y red) durante un período de tiempo configurable, recopilando métricas a intervalos definidos. Los datos recopilados se almacenan en un archivo de Excel (`monitoreo.xlsx`). El script utiliza la librería `psutil` para obtener las métricas del sistema y `openpyxl` para generar y escribir en el archivo Excel.
 
 ## Requisitos
 
@@ -42,16 +46,16 @@ Devuelve un objeto `Workbook` y su hoja activa `ws` para que se pueda escribir e
 ### 3. `monitorear()`
 Esta es la función principal que gestiona el proceso de monitoreo de los recursos:
 - Crea el archivo Excel y la hoja.
-- Monitorea el sistema durante 2 minutos (120 segundos), recolectando métricas cada 10 segundos.
+- Monitorea el sistema durante un período de tiempo configurado por el usuario, recolectando métricas a intervalos definidos.
 - Para cada recolección, obtiene las métricas mediante `obtener_metricas()` y las guarda en el archivo Excel.
 - Finalmente, guarda el archivo Excel con el nombre `monitoreo.xlsx`.
 
 #### Proceso de Ejecución
 1. Se inicia el monitoreo con `tiempo_inicio = time.time()`.
-2. Cada 10 segundos, se obtienen las métricas del sistema.
+2. Cada `intervalo` segundos se recopilan las métricas del sistema.
 3. Se registran las métricas junto con el tiempo transcurrido en el archivo Excel.
-4. El proceso se repite hasta que hayan transcurrido 120 segundos (2 minutos).
-5. El archivo Excel se guarda y se notifica al usuario.
+4. El proceso se repite hasta que hayan transcurrido `tiempo_total` segundos.
+5. El archivo Excel se guarda y se notifica al usuario que los datos se guardaron en el archivo `monitoreo.xlsx`.
 
 ### 4. Ejecución Principal
 El script ejecuta la función `monitorear()` cuando se ejecuta directamente el archivo Python.
@@ -59,6 +63,29 @@ El script ejecuta la función `monitorear()` cuando se ejecuta directamente el a
 ```python
 if __name__ == "__main__":
     monitorear()
+```
+
+## Cómo Modificar el Tiempo de Ejecución
+
+El tiempo de monitoreo y el intervalo entre cada recolección de métricas son configurables. Para ajustar estos valores, debes modificar las siguientes líneas en el código:
+
+```python
+# Tiempo de monitoreo: 2 minutos = 120 segundos
+tiempo_total = 120  # Duración total del monitoreo en segundos (por defecto 2 minutos)
+intervalo = 10  # Intervalo de recolección de datos en segundos (por defecto 10 segundos)
+tiempo_inicio = time.time()  # Marca el inicio del monitoreo
+```
+
+### Explicación:
+- **`tiempo_total`**: Define la duración total del monitoreo en segundos. El valor predeterminado es **120** segundos (2 minutos), pero puedes modificarlo a cualquier valor que desees (por ejemplo, 300 para 5 minutos).
+- **`intervalo`**: Define cada cuánto tiempo se recolectan las métricas en segundos. El valor predeterminado es **10** segundos, pero puedes ajustarlo según tus necesidades (por ejemplo, 5 para recolectar métricas cada 5 segundos).
+
+### Ejemplo:
+Si deseas monitorear el sistema durante 10 minutos y recolectar las métricas cada 5 segundos, puedes cambiar estas líneas de la siguiente manera:
+
+```python
+tiempo_total = 600  # 10 minutos = 600 segundos
+intervalo = 5  # Recolección de datos cada 5 segundos
 ```
 
 ## Funcionamiento Detallado
@@ -69,13 +96,13 @@ if __name__ == "__main__":
    
 2. **Recopilación de Datos**:
    - Se obtiene el tiempo transcurrido desde el inicio utilizando `time.time()`.
-   - Cada 10 segundos se recopilan las métricas del sistema (CPU, memoria, disco y red) y se añaden a la hoja de Excel.
+   - Cada `intervalo` segundos se recopilan las métricas del sistema (CPU, memoria, disco y red) y se añaden a la hoja de Excel.
    
 3. **Espera entre Recolecciones**:
-   - Después de cada recolección de métricas, el script espera 10 segundos antes de volver a recolectar los datos.
+   - Después de cada recolección de métricas, el script espera el tiempo definido en `intervalo` antes de volver a recolectar los datos.
 
 4. **Finalización**:
-   - Después de 120 segundos (2 minutos), el monitoreo se detiene.
+   - Después de haber transcurrido `tiempo_total` segundos, el monitoreo se detiene.
    - El archivo Excel se guarda con los datos recopilados y se notifica al usuario que los datos se guardaron en el archivo `monitoreo.xlsx`.
 
 ## Salida Esperada
@@ -92,9 +119,13 @@ Al final de la ejecución, el script generará un archivo Excel llamado `monitor
 ## Consideraciones
 
 - El script obtiene las métricas del sistema con un intervalo de 1 segundo para cada tipo de recurso (lo cual puede no ser exacto para algunos recursos, como el uso de red).
-- El monitoreo se realiza solo por un período de 2 minutos (120 segundos), pero puedes modificar el valor de `tiempo_total` y el intervalo de recolección si es necesario.
+- El monitoreo se realiza por un período de tiempo determinado por el valor de `tiempo_total`, y el intervalo de recolección se puede modificar ajustando el valor de `intervalo`.
 - El archivo Excel se guarda en el mismo directorio donde se ejecuta el script, y sobrescribirá el archivo si ya existe.
 
 ## Conclusión
 
-Este script proporciona una solución simple y eficiente para monitorear el uso de los recursos del sistema (CPU, memoria, disco y red) y almacenar esos datos en un archivo Excel para su posterior análisis o uso.
+Este script proporciona una solución simple y eficiente para monitorear el uso de los recursos del sistema (CPU, memoria, disco y red) y almacenar esos datos en un archivo Excel para su posterior análisis o uso. Puedes ajustar fácilmente la duración del monitoreo y el intervalo de recolección de métricas para adaptarlo a tus necesidades específicas.
+
+--- 
+
+Con esta actualización, ahora los usuarios saben cómo ajustar tanto el tiempo total de monitoreo como el intervalo de recolección de datos según sus necesidades.
