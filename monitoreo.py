@@ -35,6 +35,10 @@ def monitorear():
         
         # Guardar los datos en la hoja de Excel
         tiempo_transcurrido = round(time.time() - tiempo_inicio)
+        
+        # Mostrar el tiempo transcurrido en pantalla
+        print(f"Tiempo transcurrido: {tiempo_transcurrido} segundos")
+        
         ws.append([tiempo_transcurrido, cpu, memoria, disco, red])
         
         # Esperar 10 segundos antes de la siguiente recolección
