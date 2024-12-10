@@ -24,7 +24,7 @@ def monitorear():
     wb, ws = crear_excel()
     
     # Tiempo de monitoreo: 2 minutos = 120 segundos
-    tiempo_total = 120
+    tiempo_total = 3600
     intervalo = 10  # cada 10 segundos
     tiempo_inicio = time.time()
     
